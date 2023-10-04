@@ -1,0 +1,54 @@
+// https://qiita.com/Yu_Mochi/items/68f033e9364b8379ed49
+// https://qiita.com/quotto/items/a672e8b3b45865832577
+{
+    "name": "devcontainer_python",
+    "build": {
+        "dockerfile": "./Dockerfile",
+        "args": {
+            "HTTP_PROXY": "${localEnv:HTTP_PROXY}"
+        }
+    },
+    "hostRequirements": {
+        "cpus": 2
+    },
+    // "containerEnv": {},
+    "remoteEnv": {
+        "http_proxy": "${localEnv:http_proxy}",
+        "https_proxy": "${localEnv:https_proxy}",
+        "HTTP_PROXY": "${localEnv:HTTP_PROXY}",
+        "HTTPS_PROXY": "${localEnv:HTTPS_PROXY}",
+        "no_proxy": "${localEnv:no_proxy}",
+        "NO_PROXY": "${localEnv:NO_PROXY}"
+        // "PIP_PROXY": "${localEnv:PIP_PROXY}"
+    },
+    // Use 'postCreateCommand' to run commands after the container is created.
+    "postCreateCommand": "pip install --no-cache-dir -r requirements.txt",
+    "workspaceFolder": "/workspace",
+    "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
+    "mounts": [
+        "source=${localEnv:HOME}/.aws,target=/home/vscode/.aws,type=bind,consistency=cached",
+        "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached"
+    ],
+    "remoteUser": "vscode",
+    // "features": {
+    //     "docker-in-docker": "latest",
+    //     "docker-from-docker": "latest",
+    //     "kubectl-helm-minikube": "latest",
+    //     "terraform": "latest",
+    //     "git": "latest",
+    //     "github-cli": "latest",
+    //     "azure-cli": "latest",
+    //     "sshd": "latest",
+    //     "desktop-lite": "latest",
+    //     "python": "latest",
+    //     "golang": "latest"
+    // },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python",
+                "njpwerner.autodocstring"
+            ]
+        }
+    }
+}

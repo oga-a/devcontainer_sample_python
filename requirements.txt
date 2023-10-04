@@ -1,0 +1,12 @@
+jupyter
+notebook
+ipykernel
+pandas
+numpy
+scipy
+matplotlib
+tqdm
+streamlit
+openai==0.27.8
+langchain==0.0.271
+faiss-cpu==1.7.4
